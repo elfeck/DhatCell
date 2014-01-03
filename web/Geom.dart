@@ -45,7 +45,7 @@ class Geom {
   }
 
   void updateGL() {
-    
+    // TODO
   }
 
   void bindGL() {

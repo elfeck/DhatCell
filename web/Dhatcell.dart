@@ -8,10 +8,13 @@ import 'dart:typed_data';
 part 'ShaderSource.dart';
 part 'ShaderProgram.dart';
 part 'Geom.dart';
+part 'Input.dart';
 part 'Player.dart';
 
 
 RenderingContext GL;
+Input input;
+
 int DISPLAY_WIDTH = 600;
 int DISPLAY_HEIGHT = 450;
 
@@ -36,6 +39,7 @@ class DhatCell {
   void initGame() {        
     canvas.width = DISPLAY_WIDTH;
     canvas.height = DISPLAY_HEIGHT;
+    input = new Input(canvas.documentOffset);
     player = new Player();
     player.initGL();
     last = 0.0;
@@ -47,6 +51,7 @@ class DhatCell {
     // print("Looptime: $delta ms");
     GL.clear(COLOR_BUFFER_BIT);
     player.drawGL(delta);
+    input.resetRelease();
     display();
   }
   
