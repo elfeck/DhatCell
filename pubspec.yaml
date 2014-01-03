@@ -1,0 +1,5 @@
+name: DhatCell
+author: Sebastian Kreisel
+homepage: http://elfeck.com
+dependencies:
+  browser: any

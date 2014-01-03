@@ -1,0 +1,28 @@
+html {
+    font-family: "sans serif";
+    color: #eeeeee;
+    background-color: #111111;
+}
+
+body {
+    width: 600px;
+    height: 100%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+div#main {
+    width: 600px;
+    height: 100%;
+}
+
+canvas#canvas {
+    width: 600px;
+    height: 450px;
+}
+
+div#footer {
+    margin-top: 20px;
+    padding: 3px;
+    font-size: 14px;
+}
