@@ -6,18 +6,21 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:math';
 
-part 'Uniform.dart';
-part 'Vec.dart';
-part 'Mat.dart';
-part 'Vec2.dart';
-part 'Vec3.dart';
-part 'Vec4.dart';
-
-part 'ShaderSource.dart';
-part 'ShaderProgram.dart';
-part 'Geom.dart';
 part 'Input.dart';
-part 'Player.dart';
+
+part 'math/Vec.dart';
+part 'math/Mat.dart';
+part 'math/Vec2.dart';
+part 'math/Vec3.dart';
+part 'math/Vec4.dart';
+part 'scene/Scene.dart';
+part 'scene/Entity.dart';
+part 'gfx/Uniform.dart';
+part 'gfx/ShaderSource.dart';
+part 'gfx/ShaderProgram.dart';
+part 'gfx/Geom.dart';
+part 'scene/scene1/Scene1.dart';
+part 'scene/scene1/Player.dart';
 
 
 RenderingContext GL;
@@ -29,8 +32,15 @@ int DISPLAY_HEIGHT = 450;
 class DhatCell {
   
   CanvasElement canvas;
-  Player player;
+  List<Scene> scenes;
+  int activeScene;
   double last;
+
+  DhatCell() {
+    scenes = new List<Scene>();
+    activeScene = -1;
+    last = 0.0;
+  }
 
   bool initGL() {
     canvas = query("#canvas");
@@ -48,23 +58,33 @@ class DhatCell {
     canvas.width = DISPLAY_WIDTH;
     canvas.height = DISPLAY_HEIGHT;
     input = new Input(canvas.documentOffset);
-    player = new Player();
-    player.initGL();
-    last = 0.0;
+
+    scenes.add(new Scene1());
+    activeScene = 0;
   }
 
-  void drawGL(num now) {
+  void nextFrame(num now) {
     double delta = now - last;
     last = now;
-    // print("Looptime: $delta ms");
-    GL.clear(COLOR_BUFFER_BIT);
-    player.drawGL(delta);
+
     input.resetRelease();
+    execDoLogic(delta);
+    execDrawGL(delta);
+
     display();
+  }
+
+  void execDoLogic(double delta) {
+    if(activeScene != -1) scenes[activeScene].delegateDoLogic(delta);
+  }
+
+  void execDrawGL(double delta) {
+    GL.clear(COLOR_BUFFER_BIT);
+    if(activeScene != -1) scenes[activeScene].delegateDrawGL(delta);
   }
   
   void display() {
-    window.animationFrame.then(drawGL);
+    window.animationFrame.then(nextFrame);
   }
 
 }
@@ -73,5 +93,5 @@ void main() {
   DhatCell game = new DhatCell();
   if(!game.initGL()) return;
   game.initGame();
-  game.drawGL(0);
+  game.execDrawGL(0.0);
 }

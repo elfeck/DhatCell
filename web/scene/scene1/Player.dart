@@ -1,7 +1,7 @@
 part of dhatcell;
 
 
-class Player implements Entity {
+class Player implements Entity{
   
   Geom geom;
   ShaderProgram program;
