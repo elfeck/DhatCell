@@ -4,6 +4,14 @@ import 'dart:web_gl';
 import 'dart:html';
 import 'dart:async';
 import 'dart:typed_data';
+import 'dart:math';
+
+part 'Uniform.dart';
+part 'Vec.dart';
+part 'Mat.dart';
+part 'Vec2.dart';
+part 'Vec3.dart';
+part 'Vec4.dart';
 
 part 'ShaderSource.dart';
 part 'ShaderProgram.dart';
@@ -60,7 +68,6 @@ class DhatCell {
   }
 
 }
-
 
 void main() {
   DhatCell game = new DhatCell();

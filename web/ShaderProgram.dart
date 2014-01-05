@@ -5,6 +5,11 @@ class ShaderProgram {
 
   Program program;
   Shader vert, frag;
+  Map<UniformLocation, Uniform> uniforms;
+
+  ShaderProgram() {
+    uniforms = new Map<UniformLocation, Uniform>();
+  }
 
   void initGL(String vertSrc, String fragSrc) {
     vert = GL.createShader(VERTEX_SHADER);
@@ -30,10 +35,15 @@ class ShaderProgram {
 
   void bindGL() {
     GL.useProgram(program);
+    uniforms.forEach((loc, uni) => uni.asUniformGL(loc));
   }
 
   void unbindGL() {
     GL.useProgram(null);
+  }
+
+  void addUniformGL(String name, Uniform uniform) {
+    uniforms.putIfAbsent(GL.getUniformLocation(program, name), () => uniform);
   }
 
 }

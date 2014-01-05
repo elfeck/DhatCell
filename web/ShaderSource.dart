@@ -4,12 +4,16 @@ String player_vert = '''
 #version 100
 precision mediump float;
 
+uniform mat4 mvp_matrix;
+uniform vec2 offset;
+
 attribute vec4 vert_position;
 varying vec2 frag_position;
 
 void main() {
-  frag_position = vec2(vert_position.xy);
-  gl_Position = vert_position;
+  vec4 pos = mvp_matrix * vec4(vert_position.xy + offset, vert_position.zw);
+  frag_position = vec2(pos.xy);
+  gl_Position = pos;
 }
 ''';
 

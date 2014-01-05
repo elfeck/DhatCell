@@ -56,10 +56,6 @@ class Geom {
     GL.bindBuffer(ELEMENT_ARRAY_BUFFER, null);
   }
 
-  void drawGL() {
-    GL.drawElements(TRIANGLES, iData.length, UNSIGNED_SHORT, 0);
-  }
-  
   void setAttrib(int index, int size, int offset) {
     GL.enableVertexAttribArray(index);
     GL.vertexAttribPointer(index, size, FLOAT, false, stride * 4, offset * 4);
