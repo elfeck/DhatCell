@@ -21,8 +21,9 @@ canvas#canvas {
     height: 450px;
 }
 
-div#footer {
+div.footer {
     margin-top: 20px;
     padding: 3px;
     font-size: 14px;
+    text-align: center;
 }

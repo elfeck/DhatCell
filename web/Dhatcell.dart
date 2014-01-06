@@ -20,6 +20,7 @@ part 'gfx/ShaderSource.dart';
 part 'gfx/ShaderProgram.dart';
 part 'gfx/Geom.dart';
 part 'scene/scene1/Scene1.dart';
+part 'scene/scene1/Bezier.dart';
 part 'scene/scene1/Player.dart';
 
 

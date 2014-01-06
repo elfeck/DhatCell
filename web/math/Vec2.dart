@@ -24,6 +24,8 @@ class Vec2 extends Vec {
   bool zero() => x == 0 && y == 0;
   List<double> toList() => [x, y];
   Float32List toTypedList() => new Float32List.fromList(toList());
+  String toString() => "($x | $y)";
+  void collect(List<double> list) => list.addAll([x, y]);
   void asUniformGL(UniformLocation location) => GL.uniform2f(location, x, y);
 
   Vec2 add(double xx, double yy) {

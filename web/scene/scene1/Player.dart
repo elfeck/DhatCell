@@ -1,7 +1,7 @@
 part of dhatcell;
 
 
-class Player implements Entity{
+class Player implements Entity {
   
   Geom geom;
   ShaderProgram program;
@@ -31,7 +31,7 @@ class Player implements Entity{
     geom.vData.addAll([-20, 20, 0.0, 1.0]);
     geom.vData.addAll([20, 20, 0.0, 1.0]);
     geom.vData.addAll([20, -20, 0.0, 1.0]);
-    geom.iData.addAll([0, 1, 2, 2, 3, 0]);
+    geom.iData.addAll([0,1,1,2,2,3,3,0]);
     geom.uploadGL();
   }
   
@@ -43,7 +43,7 @@ class Player implements Entity{
     geom.bindGL();
     program.bindGL();
     GL.viewport(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
-    GL.drawElements(TRIANGLES, 6, UNSIGNED_SHORT, 0);
+    GL.drawElements(LINES, 8, UNSIGNED_SHORT, 0);
     program.unbindGL();
     geom.unbindGL();
  }

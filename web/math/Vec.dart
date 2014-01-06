@@ -9,5 +9,7 @@ abstract class Vec extends Uniform {
 
   List<double> toList();
   Float32List toTypedList();
+  String toString();
+  void collect(List<double> list);
 
 }

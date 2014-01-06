@@ -28,6 +28,8 @@ class Vec4 extends Vec {
   bool zero() => x == 0 && y == 0 && z == 0 && w == 0;
   List<double> toList() => [x, y, z, w];
   Float32List toTypedList() => new Float32List.fromList(toList());
+  String toString() => "($x | $y | $z | $w)";
+  void collect(List<double> list) => list.addAll([x, y, z, w]);
   void asUniformGL(UniformLocation location) => GL.uniform4f(location, x, y, z, w);
 
   Vec4 addVec(Vec4 other) {
